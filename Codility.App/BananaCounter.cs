@@ -1,15 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-// you can also use other imports, for example:
-// using System.Collections.Generic;
-
-// you can write to stdout for debugging purposes, e.g.
-// Console.WriteLine("this is a debug message");
-
 public class BananaCounter {
     public static int Solution(string S) {        
-        // write your code in C# 6.0 with .NET 4.7 (Mono 6.12)
 
         if (S == null || S.Length == 0) {
             return 0;
@@ -20,12 +13,12 @@ public class BananaCounter {
         move.Add('B', 1);
         move.Add('N', 2);
 
-        var charArray = S.ToCharArray();
-        foreach(char item in charArray) {
-            if (counter.ContainsKey(item)) {
-                counter[item]++;
+        var array = S.ToCharArray();
+        foreach(char c in array) {
+            if (counter.ContainsKey(c)) {
+                counter[c]++;
             } else {
-                counter[item] = 1;
+                counter[c] = 1;
             }
         }
         
@@ -35,11 +28,8 @@ public class BananaCounter {
 
         // Console.WriteLine($"A: {counter['A']}, B: {counter['B']}, N: {counter['N']}");
 
-        var min = counter.ToList()
-        .Where(pair => move.Keys.Contains(pair.Key))
-        .Select(pair => pair.Value/ move[pair.Key])
-        .Min();
-        
-        return min;
+        return counter.ToList().Where(pair => move.Keys.Contains(pair.Key))
+            .Select(pair => pair.Value/ move[pair.Key])
+            .Min();
     }
 }
