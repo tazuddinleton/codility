@@ -14,13 +14,13 @@ class SeatReservation {
         var possibility2 = "DEFG";
         var possibility3 = "FGHJ";
 
-        // First all possible combinations are gathered, then start cancelling out as the
-        // reserved seat number is read from the string S
+        // Gather all possible combination.
         var possibilities = new Dictionary<int, List<string>>();
         for (int i = 1; i <= N; i++) {
             possibilities.Add(i, new List<string>(){possibility1, possibility2, possibility3});
         }
 
+        // Remove the ones already reserved.
         if (S != null && S.Length > 0) {
             var reservations =  S.Split(' ');        
             reservations.ToList().ForEach(seat => {  
@@ -33,21 +33,19 @@ class SeatReservation {
             });
         }
         
-        // Now that we have canceled out all the reserved seats from potentially reservable list of seats, we need to 
-        // filter out any remaining invalid seat combination.
-        var values = possibilities.ToList().Select(pair => pair.Value).Select(list => {
-            var d = new HashSet<char>();
-            list.ForEach(str => {
-                var ch  = str.ToCharArray();
-                foreach(char item in  ch) {
-                    d.Add(item);
-                }
-            });
-            return d.Count/4;
-        }).ToList();;
         
-       return values.Sum();
-
-        // return possibilities.ToList().Select(pair => pair.Value.Count()).Sum();
+        // Filter out any remaining invalid seat combination.
+        return possibilities.ToList()
+            .Select(pair => pair.Value)
+            .Select(possibilities => {
+                var d = new HashSet<char>();
+                possibilities.ForEach(possibility => {
+                    var array  = possibility.ToCharArray();
+                    foreach(var c in  array) {
+                        d.Add(c);
+                    }
+                });
+                return d.Count/4;
+            }).ToList().Sum();
     }
 }
