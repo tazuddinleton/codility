@@ -17,9 +17,9 @@ public class BananaCounter {
         foreach(char c in array) {
             if (counter.ContainsKey(c)) {
                 counter[c]++;
-            } else {
-                counter[c] = 1;
-            }
+                continue;
+            } 
+            counter[c] = 1;
         }
         
         if (!move.Keys.All(k => counter.Keys.Contains(k))) {
