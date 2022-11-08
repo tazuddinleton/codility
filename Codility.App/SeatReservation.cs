@@ -8,8 +8,7 @@ using System.Collections.Generic;
 // Console.WriteLine("this is a debug message");
 
 class SeatReservation {
-    public static int solution(int N, string S) {
-        // write your code in C# 6.0 with .NET 4.7 (Mono 6.12)
+    public static int Solution(int N, string S) {
         
         var validComb1 = "BCDE";
         var validComb2 = "DEFG";
