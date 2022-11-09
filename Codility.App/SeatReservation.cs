@@ -7,7 +7,7 @@ using System.Collections.Generic;
 // you can write to stdout for debugging purposes, e.g.
 // Console.WriteLine("this is a debug message");
 
-class SeatReservation {
+public class SeatReservation {
     public static int Solution(int N, string S) {
         
         var possibility1 = "BCDE";
